@@ -1,27 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
     public Rigidbody rb;
     public float speed = 5f;
+    private int count;
+    public Text countText;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         rb = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        count = 0;
+        UpdateText();
+
+    }
+
+    private void UpdateText()
+    {
+        countText.text = "Count: " + count.ToString();
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
+        // If we hit a pick up
         if(collider.gameObject.CompareTag("Pick Up"))
         {
             collider.gameObject.SetActive(false);
+            count++;
+            UpdateText();
         }
     }
 
