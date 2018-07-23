@@ -9,19 +9,24 @@ public class PlayerController : MonoBehaviour {
     public float speed = 5f;
     private int count;
     public Text countText;
+    public Text winText;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
         UpdateText();
-
+        winText.text = "";
     }
 
     private void UpdateText()
     {
         countText.text = "Count: " + count.ToString();
+        if(count >= 12)
+        {
+            winText.text = "You Win!";
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
