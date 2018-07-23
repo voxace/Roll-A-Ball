@@ -17,6 +17,14 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.CompareTag("Pick Up"))
+        {
+            collider.gameObject.SetActive(false);
+        }
+    }
+
     // Update called before physics calculations
     private void FixedUpdate()
     {
